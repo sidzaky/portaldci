@@ -240,7 +240,7 @@ class Visitor extends MX_Controller {
         foreach ($list->result_array() as $field) {
 			
 			$bussiness='';
-			$id_key='';
+			$id_key="";
 			$lastchekin='';
 			$nda="";
 			//get stiker parkir//
@@ -252,33 +252,44 @@ class Visitor extends MX_Controller {
 			
 			if ($field['id_log_gedung']!='') {
 						$in++;
-						$bussiness	='<b><span class="label label-success"> '.$field['bussiness'].'</span></br></b>';
-						$ischeckin		=($this->session->userdata('module_access')['vm1']>3 ? '<button class="btn btn-success waves-effect waves-light btn-sm" onclick="checkout_visitor(\''.$field['id_log_gedung'].'\',\''.$field['id_visitor'].'\',\''.$field['id_key'].'\');" type="button" ><i class="fa fa-sign-out"></i> Check out</button>' : '' );
-						$id_key			='<span class="label label-danger">Id key :'.$field['warna'].'['.$field['nomer'].'] ['.$field['keterangan'].'] by '.$field['user_in'].' </span>';
+						$bussiness			='<b><span class="label label-success"> '.$field['bussiness'].'</span></br></b>';
+						$ischeckin			=($this->session->userdata('module_access')['vm1']>3 ? '<button class="btn btn-success waves-effect waves-light btn-sm" onclick="checkout_visitor(\''.$field['id_log_gedung'].'\',\''.$field['id_visitor'].'\',\''.$field['id_key'].'\');" type="button" ><i class="fa fa-sign-out"></i> Check out</button>' : '' );
+						$id_key				='<span class="label label-danger">Id key :'.$field['warna'].'['.$field['nomer'].'] ['.$field['keterangan'].'] by '.$field['user_in'].' </span>';
 						$day				=floor(((time()-$field['time_in'])/3600)/24);
-						$lastchekin	=($day != 0 ? '<input type="hidden" id="plusday" value="'.$plusday++.'"><span class="label label-danger"> Checkin selama '.$day.' Hari '.gmdate("H:i", time()-$field['time_in']). ' Jam </span> </br>' : '' ).'<span class="label label-warning"> Waktu Check in : '.date('H:i d-M, Y', $field['time_in']).'</span></br>';
+						$lastchekin			=($day != 0 ? '<input type="hidden" id="plusday" value="'.$plusday++.'"><span class="label label-danger"> Checkin selama '.$day.' Hari '.gmdate("H:i", time()-$field['time_in']). ' Jam </span> </br>' : '' ).'<span class="label label-warning"> Waktu Check in : '.date('H:i d-M, Y', $field['time_in']).'</span></br>';
 			}
 			else {
 					if ($_POST['search']['value']!=""){
 						$ischeckin		=($this->session->userdata('module_access')['vm1']>3 ? '<button class="btn btn-primary waves-effect waves-light btn-sm checkin" onclick="form_checkin(\''.$field['id_visitor'].'\',\''.$field['warning_msg'].'\');" type="button" ><i class="fa fa-sign-in"></i> Check In</button>' : '' );
-						$lastchekin	='<span class="label label-info">'.$field['last_log_checkin'].'</span>';
+						$lastchekin		='<span class="label label-info">'.$field['last_log_checkin'].'</span>';
 					}
 					else continue;
 			}
 			
-			$nda='<button class="btn btn-purple waves-effect waves-light btn-sm"  data-toggle="modal" data-target=".nda-modal" onclick="checknumbernda(\''.$field['id_visitor'].'\');" type="button" ><i class="fa fa-upload"></i>NDA DC</button>';
 			
-			$ndacheck= ($field['document_nda_visitor']!="" ? '<span class="label label-success"><a target="_blank" style="color:#fff;" href="'.base_url().$field['document_nda_visitor'].'""> NDA </a> <i class="fa fa-check" style="color:white;"></i></span></br>' : "" );
+			$detailvisitor  = "";
+			$detailvisitor .= '<div id="'.$field['id_visitor'].'">';
+			$detailvisitor .= '<span class="label label-primary">'.$field["name_visitor"].'</span> </br> ';
+			$detailvisitor .= '<span class="label label-primary"> ['.($field["organic"]!=0 ? 'PT. BRI // '  : '' ).$field["company"].'] </span></br>';
+			$detailvisitor .= '<span class="label label-info"> Id : '.$field["id_number"] .'</span></br>';
+			$detailvisitor .= '<span class="label label-info"> Telepon  : '.$field["phone_number"] .'</span></br>';
+			$detailvisitor .= '<span class="label label-primary"> Alamat  : '.substr($field["domicile"] ,0,20).'</span></br>';
+			$detailvisitor .= ($field['document_nda_visitor']!="" ? '<span class="label label-success"><a target="_blank" style="color:#fff;" href="'.base_url().$field['document_nda_visitor'].'""> NDA </a> <i class="fa fa-check" style="color:white;"></i></span></br>' : "" );						
+			$detailvisitor .= $echoparkir;		
+			$detailvisitor .= '</div>';					  
 			
-			$detailvisitor='<div id="'.$field['id_visitor'].'">
-										<span class="label label-primary">'.$field["name_visitor"].'</span> </br> 
-										<span class="label label-primary"> ['.($field["organic"]!=0 ? 'PT. BRI // '  : '' ).$field["company"].'] </span></br>
-										<span class="label label-info"> Id : '.$field["id_number"] .'</span></br>
-										<span class="label label-info"> Telepon  : '.$field["phone_number"] .'</span></br>
-										<span class="label label-primary"> Alamat  : '.substr($field["domicile"] ,0,20).'</span></br>
-										'.$ndacheck.'
-										'.$echoparkir.'
-								  </div>';
+			$buttonaction="";
+			$buttonaction .= $ischeckin;
+			#edit button
+			$buttonaction .= '<button class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target=".first-modal" onclick="form_visitor(\''.$field['id_visitor'].'\')" data-target=".modal" type="button" ><i class="fa fa-pencil"></i>Edit</button>';
+			#disable visitor
+			$buttonaction .= ($this->session->userdata('module_access')['vm1']>=0 && $id_key == ""  ?  '<button class="btn btn-danger waves-effect waves-light btn-sm"  onclick="disvis(\''.$field['id_visitor'].'\',\''.$field['name_visitor'].'\')"  type="button" ><i class="fa fa-close"></i>Delete</button>' : '' );
+			#setmessage visitor
+			$buttonaction .= ($this->session->userdata('module_access')['vm1']>5 ?  '<button class="btn btn-info waves-effect waves-light btn-sm"  onclick="setmessage(\''.$field['id_visitor'].'\');"  type="button" ><i class="fa fa-message"></i>force update</button>' : '' );
+			#setstiker visitor
+			$buttonaction .= ($this->session->userdata('module_access')['vm1']>4 ?  '<button class="btn btn-info waves-effect waves-light btn-sm"  onclick="stiker(\''.$field['id_visitor'].'\');"  type="button" ><i class="fa fa-message"></i>stiker Parkir</button>' : '' );
+			#setnda
+			$buttonaction .= '<button class="btn btn-purple waves-effect waves-light btn-sm"  data-toggle="modal" data-target=".nda-modal" onclick="checknumbernda(\''.$field['id_visitor'].'\');" type="button" ><i class="fa fa-upload"></i>NDA DC</button>';
 			
             $no++;
             $row = array();
@@ -287,11 +298,7 @@ class Visitor extends MX_Controller {
             $row[] = $bussiness.$lastchekin.$id_key;
             $row[] = '<a target="_blank" href="'.base_url().($field['person_img']!='' ? $field['person_img']: 'assets/img/unknown.jpg').'"><img class="lazy"  data-original='.base_url().($field['person_img']!='' ? $field['person_img'] : 'assets/img/unknown.jpg').' style="max-width:200px;max-height:150px;"></a>';
             $row[] = '<a target="_blank" href="'.base_url().($field['idcard_img']!='' ? $field['idcard_img']: 'assets/img/unknown.jpg').'"><img class="lazy"  data-original='.base_url().($field['idcard_img']!='' ? $field['idcard_img'] : 'assets/img/unknown.jpg').' style="max-width:200px;max-height:150px;"></a>';
-            $row[] = 
-					$ischeckin.'<button class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target=".first-modal" onclick="form_visitor(\''.$field['id_visitor'].'\')" data-target=".modal" type="button" ><i class="fa fa-pencil"></i>Edit</button>
-					'.($this->session->userdata('module_access')['vm1']>=0 ?  '<button class="btn btn-danger waves-effect waves-light btn-sm"  onclick="disvis(\''.$field['id_visitor'].'\',\''.$field['name_visitor'].'\')"  type="button" ><i class="fa fa-close"></i>Delete</button>' : '' ).
-					 ($this->session->userdata('module_access')['vm1']>5 ?  '<button class="btn btn-info waves-effect waves-light btn-sm"  onclick="setmessage(\''.$field['id_visitor'].'\');"  type="button" ><i class="fa fa-message"></i>force update</button>' : '' ).
-					 ($this->session->userdata('module_access')['vm1']>4 ?  '<button class="btn btn-info waves-effect waves-light btn-sm"  onclick="stiker(\''.$field['id_visitor'].'\');"  type="button" ><i class="fa fa-message"></i>stiker Parkir</button>' : '' ).$nda;
+            $row[] = $buttonaction;
             $data[] = $row;
         }
  
