@@ -1,0 +1,17 @@
++---------------+--------------+-------------------------+-------------------------+------------+----------+--------+
+| id_log_gedung | id_visitor   | name_visitor            | concat(b.warna,b.nomer) | time_in    | time_out | active |
++---------------+--------------+-------------------------+-------------------------+------------+----------+--------+
+| 44in6dbba     | 7cvis6179    | HERYANTO HARTRA MAMANAM | hitam031                | 1564964614 |          | 0      |
+| 8475in0fc6    | 8f5vis2d03   | FEBRIDO SIHALOHO        | abu abu007              | 1562028917 |          | 0      |
+| f0inbe28      | 3c5visc62f8  | SAFARI  MUHAMAD         | orange048               | 1562801206 |          | 0      |
+| e6in21c5      | fe1cvis63c7  | ROHMANDA ARYADHI KUSUMO | orange061               | 1556523063 |          | 0      |
+| a790in903cb   | b3vis0433    | JUNAIDI AKBAR           | orange067               | 1565189331 |          | 0      |
+| 79ind271      | 2638vis6c59  | MAULANA ADHI NUGROHO    | orange095               | 1557970229 |          | 0      |
+| b5in9bd2      | 150vis8366   | JUNAIDI AKBAR           | orange149               | 1556524730 |          | 0      |
+| 9e6inbb5e     | 4ba5viseaf96 | HARRY JUNAIDY           | orange226               | 1563180152 |          | 0      |
+| c9ind3b57     | 9evisda1d2   | DARWIN MORENO           | orange278               | 1536123165 |          | 0      |
+| 09infd8f2     | 418bvis4cda  | miki hardianto          | orange311               | 1536827122 |          | 0      |
+| 7ain6af4      | 81d1vis8245  | RADEN DHIMAS BIMA A     | orange392               | 1543276258 |          | 0      |
+| bfe6in6aa4    | 86visb85bc   | Yana Supriatna          | merah muda003           | 1555916722 |          | 0      |
++---------------+--------------+-------------------------+-------------------------+------------+----------+--------+
+
