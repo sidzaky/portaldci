@@ -1,3 +1,4 @@
 #file upload #
 uploads/*
 temp/*
+.htaccess
