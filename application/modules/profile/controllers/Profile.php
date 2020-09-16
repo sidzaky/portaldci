@@ -40,7 +40,6 @@ class Profile extends MX_Controller {
 		$data['profile']=json_decode(json_encode($this->profile_m->getprofile()),true)[0];
 		$data['content'] = 'profile_v';
 		$this->load->view('template',$data);
-			
 	}
 	
 	
