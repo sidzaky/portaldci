@@ -159,6 +159,14 @@ class Login extends MX_Controller {
 		}
 	}
 	
+	public function disuser(){
+		$this->load->module('activity');
+		$this->load->model('activity_m');
+		$this->login_m->disuser_m();
+		$_POST='';
+		$this->load->module('controll');
+		$this->controll->getuserlist();
+	}
 	
 	public function noaccess($data){
 		redirect ('dashboard'.$this->session->set_flashdata(array	('heading'	=> 'Warning',

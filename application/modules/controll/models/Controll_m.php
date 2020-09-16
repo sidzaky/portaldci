@@ -14,8 +14,9 @@ class Controll_m extends CI_Model
 
 	
 	function getuserlist_m($id){
-		$sql="select * from user";
-		if ($_POST['ID']!='' || $id!='') $sql.= "where ID='".$_POST['ID'].$id."'";
+		$sql="select * from user where ACTIVE='Y' ";
+		if ($_POST['ID']!='' || $id!='') $sql.= " and ID='".$_POST['ID'].$id."'";
+		
 		return $this->db->query($sql)->result_array();
 	}
 	

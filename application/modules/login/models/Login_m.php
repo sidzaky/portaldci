@@ -64,6 +64,12 @@ class Login_m extends CI_Model
 		return true;
 	}
 	
+	public function disuser_m(){
+		$sql="update user set ACTIVE='N' where ID='".$_POST['ID']."'";
+		$this->db->query($sql);
+		$this->activity_m->writelog('profile',"Disable user dengan ID=".$_POST['ID']." oleh ".$this->session->userdata('nama_user')."(".$this->session->userdata('user_id').")");
+	}
+	
 	public function checkpmslan_m(){
 		$sql="select * from pms_lan
 						where 	nomor_surat_masuk like '%".$_POST['data']."%' or 

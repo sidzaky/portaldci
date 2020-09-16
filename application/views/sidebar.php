@@ -12,7 +12,10 @@
 						</div>
 					</div>
 					<ul class="nav in" id="side-menu">
-							<li><a href="<?php echo base_url()?>" class="waves-effect <?php echo ($this->uri->segment(3)=='dashboard' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-dashboard"></i> <span class="hide-menu">Dashboard</span></a></li>
+							
+							<li><a href="<?php echo base_url()?>dashboard" class="waves-effect <?php echo ($this->uri->segment(3)=='dashboard' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-dashboard"></i> <span class="hide-menu">Dashboard</span></a></li>
+							<li><a href="<?php echo base_url()?>profile" class="waves-effect <?php echo ($this->uri->segment(3)=='profile' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-user"></i> <span class="hide-menu">Pengaturan Akun</span></a></li>
+							<li><a href="<?php echo base_url()?>login/logout"><i class="linea-icon linea-basic fa-fw fa fa-power-off"></i> <span class="hide-menu">Keluar</span></a></li>
 							
 							
 							<li class="nav-small-cap">- Visitor Management v2.0</li>
@@ -57,20 +60,20 @@
 							<!-- <li><a href="<?php echo base_url()?>vendormanagement" class="waves-effect <?php echo ($this->uri->segment(3)=='vendormanagement' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-random"></i> <span class="hide-menu">Vendor Management</span></a></li> -->
 							
 							
-							<li><a href="<?php echo base_url()?>vendormanage" class="waves-effect <?php echo ($this->uri->segment(3)=='vendormanage' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-chain "></i> <span class="hide-menu">Vendor Management</span></a></li>
-							<li><a href="<?php echo base_url()?>inventory" class="waves-effect <?php echo ($this->uri->segment(3)=='inventory' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-cubes "></i> <span class="hide-menu">DC Inventory</span></a></li>
+							<!-- <li><a href="<?php echo base_url()?>vendormanage" class="waves-effect <?php echo ($this->uri->segment(3)=='vendormanage' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-chain "></i> <span class="hide-menu">Vendor Management</span></a></li> -->
+							<!-- <li><a href="<?php echo base_url()?>inventory" class="waves-effect <?php echo ($this->uri->segment(3)=='inventory' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-cubes "></i> <span class="hide-menu">DC Inventory</span></a></li> -->
 							
 							<li><a href="<?php echo base_url('dailymonitoring')?>" class="waves-effect <?php echo ($this->uri->segment(3)=='visitor' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-calendar"></i>  <span class="hide-menu">Daily Monitoring Menu<span class="fa arrow"></span></span></a>
 								<ul class="nav nav-second-level collapse  <?php echo ($this->uri->segment(3)=='visitor' ? 'in' : '' );?>" aria-expanded="true" style="">
 									<li><a href="<?php echo base_url("dailymonitoring/ups")?>" class="waves-effect <?php echo ($this->uri->segment(4)=='ups' ? 'active' : '' );?>"><span class="hide-menu">Form UPS</span></a></li>
-									<li><a href="<?php echo base_url("dailymonitoring/briks")?>" class="waves-effect <?php echo ($this->uri->segment(4)=='briks' ? 'active' : '' );?>"><span class="hide-menu">Form Briks</span></a></li>
+									<!-- <li><a href="<?php echo base_url("dailymonitoring/briks")?>" class="waves-effect <?php echo ($this->uri->segment(4)=='briks' ? 'active' : '' );?>"><span class="hide-menu">Form Briks</span></a></li> -->
 									<!-- <li><a href="<?php echo base_url("dailymonitoring/lvmdp")?>"  class="waves-effect <?php echo ($this->uri->segment(4)=='lvmdp' ? 'active' : '' );?>">Form LVMDP</a></li>
 									<li><a href="<?php echo base_url("dailymonitoring/panel")?>"  class="waves-effect <?php echo ($this->uri->segment(4)=='panel' ? 'active' : '' );?>">Form Panel</a></li> -->
 								</ul>
 							</li>
 							
 							
-							<li><a href="<?php echo base_url()?>healtcheck" class="waves-effect <?php echo ($this->uri->segment(3)=='healtcheck' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-heartbeat "></i> <span class="hide-menu">Healt Check</span></a></li>
+							<!-- <li><a href="<?php echo base_url()?>healtcheck" class="waves-effect <?php echo ($this->uri->segment(3)=='healtcheck' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-heartbeat "></i> <span class="hide-menu">Healt Check</span></a></li> -->
 							<li><a href="<?php echo base_url()?>controll" class="waves-effect <?php echo ($this->uri->segment(3)=='controll' ? 'active' : '' );?>"><i class="linea-icon linea-basic fa-fw fa fa-cogs"></i> <span class="hide-menu">Controll Menu</span></a></li>
 							
 					  </ul>
