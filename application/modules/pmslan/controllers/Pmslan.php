@@ -51,6 +51,8 @@ class Pmslan extends MX_Controller {
 	////////////////////////////////FORM INPUT DATA/////////////////////////////
 	public function input_request_tarikan(){
 			if($_POST==NULL){
+				$data['jenis_kabel']	= $this->pmslan_m->get_jeniskabel_m();
+				$data['jenis_konektor'] = $this->pmslan_m->get_jeniskonektor_m();
 				$data['unit_kerja']=$this->pmslan_m->get_unitkerja();
 				$this->load->view('pms_lan_form_surat_masuk_v', $data);
 			} 

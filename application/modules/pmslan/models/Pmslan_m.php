@@ -112,6 +112,17 @@ class Pmslan_m extends CI_Model
 		$this->activity_m->writelog('pmslan',$message);
 	}
 	
+	public function get_jeniskabel_m(){
+		$sql="select * from pms_lan_jenis_kabel where active=1";
+		return $this->db->query($sql)->result_array();
+	}
+	
+	public function get_jeniskonektor_m(){
+		$sql="select * from pms_lan_jenis_konektor where active=1";
+		return $this->db->query($sql)->result_array();
+	}
+	
+	
 	/////////////////////////////////////////////report summary///////////////////////////////////////////////////
 	
 	public function summary(){
